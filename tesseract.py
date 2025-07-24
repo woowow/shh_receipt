@@ -1,12 +1,13 @@
 import cv2
 import pytesseract
-from PIL import Image
+from PIL import Image, ExifTags
 import numpy as np
 
 
 # dpi check
-def dpi_check(img):
-    dpi = img.info.get('dpi', (72, 72))
+def dpi_check(img_path):
+    img = Image.open(img_path)
+    dpi = img.info.get('dpi')
     return dpi
 
 # dpi modify
@@ -20,10 +21,9 @@ def main():
     pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
 
 #    img_path = 'C:/Users/PC/Desktop/sh_hackathon/image/receipt_nh.jpg'
-    img_path = 'C:/Users/SSAFY/Desktop/shh_receipt/image/receipt_hd.jpg'
+    img_path = 'C:/Users/SSAFY/Desktop/shh_receipt/image/receipt_cu.jpg'
 
-    save_path = 'C:/Users/SSAFY/Desktop/shh_receipt/image/receipt_hd_dpi_300.jpg'
-
+    save_path = 'C:/Users/SSAFY/Desktop/shh_receipt/image/receipt_etc_2_dpi_300.jpg'
 
     # 정확도 향상을 위한 grayscale 변환, 이진화 작업
     img = cv2.imread(img_path)
